@@ -49,30 +49,47 @@ namespace clase_de_windows_for_1_
            
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+    
+
+private void button1_Click_1(object sender, EventArgs e)
+{
+  int intentos = 0;
+    string usr = nombrebox.Text;
+    string pwr = contrabox.Text;
+
+    if (usr == null || pwr == null)
+    {
+        MessageBox.Show("No puede dejar en blanco");
+    }
+    else
+    {
+        MessageBox.Show("Bienvenido al sistema");
+    }
+
+    if (usr.Equals("admin") && pwr.Equals("admin"))
+    {
+        fmregistro fmregistro = new fmregistro();
+        registro.Show();
+    }
+    else
+    {
+        intentos++;
+
+        if (intentos >= 3)
         {
-            string usr = nombrebox.Text;
-            string pwr = contrabox.Text;
-            if (usr == null || pwr == null)
-            {
-                MessageBox.Show("no puede dejar en blanco");
-
-            }
-            else
-            {
-                MessageBox.Show("bienvenido al sistema");
-            }
-            if (usr.Equals("admin") && pwr.Equals("admin")) {
-
-
-                fmregistro fmregistro = new fmregistro();
-                registro.Show();
-
-            }
-            else
-            {
-                MessageBox.Show("usuario y contraseña erroneos");
-            }
+            // Después de tres intentos fallidos, establece las entradas a null
+            button1Click1= null;
+            contrabox.Clear();
+            ombrebox.Clear();
+            
+            MessageBox.Show("Se han realizado tres intentos fallidos. Las entradas de usuario y contraseña se han restablecido.");
         }
+        else
+        {
+            MessageBox.Show("Usuario y/o contraseña incorrectos");
+        }
+    }
+}
+
     }
 }
